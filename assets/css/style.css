@@ -1,0 +1,12 @@
+
+
+.opening-text {
+    text-align: center;
+    background-color: rgb(52, 52, 168);
+    color: white;
+}
+
+#city-search {
+    font-weight: bolder;
+    font-size: large;
+}
