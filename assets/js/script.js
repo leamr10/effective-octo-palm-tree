@@ -2,6 +2,7 @@
 var apiKey = '7facfa5579c58d1fb4bd2c24b9dea9e0';
 var searchBtn = document.querySelector('#search');
 var searchInput = document.querySelector('input');
+var citySearch = [];
 
 searchBtn.addEventListener('click', handleSearch);
 function handleSearch ( ) {
@@ -10,6 +11,7 @@ function handleSearch ( ) {
 
     var city = searchInput.value;
 fetchWeather(city)
+addToHistory();
 }
 
 function fetchWeather(city) {
@@ -41,7 +43,7 @@ document.getElementById('wind').textContent = data.wind.speed + ' mph'
 }
 
 function displayForecast (data) {
-    for (let i = 0; i < data.length; i+=8)
+    for (let i = 3; i < data.length; i+=8)
     {
         let card = document.createElement("div");
         var changeDate = dayjs.unix(data[i].dt).format('MMM D, YYYY');
@@ -55,5 +57,24 @@ function displayForecast (data) {
         wind.textContent = data[i].wind.speed;
         let icon = document.createElement("img");
         icon.src = `https://openweathermap.org/img/w/${data[i].weather[0].icon}.png`
+        card.append(date,icon,temp,humid,wind);
+        document.getElementById("forecast-weather").append(card);
+    }
+}
+
+function addToHistory (city) {
+    if (citySearch.indexOf(city)!==-1)
+    {return}
+    citySearch.push(city)
+    localStorage.setItem("searchHistory", JSON.stringify(citySearch))
+    renderHistory();
+}
+
+function renderHistory () {
+    for (i=citySearch.length-1; i >= 0; i--)
+    {
+    let historyButton = document.createElement("button");
+    historyButton.textContent = citySearch[i]
+    document.getElementById("history").append(historyButton);
     }
 }
