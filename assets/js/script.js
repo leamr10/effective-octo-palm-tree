@@ -3,6 +3,7 @@ var apiKey = '7facfa5579c58d1fb4bd2c24b9dea9e0';
 var searchBtn = document.querySelector('#search');
 var searchInput = document.querySelector('input');
 var citySearch = [];
+var cityHistoryFormEl = document.querySelector('#city-history')
 
 searchBtn.addEventListener('click', handleSearch);
 function handleSearch ( ) {
@@ -11,7 +12,7 @@ function handleSearch ( ) {
 
     var city = searchInput.value;
 fetchWeather(city)
-addToHistory();
+addToHistory(city);
 }
 
 function fetchWeather(city) {
@@ -43,6 +44,7 @@ document.getElementById('wind').textContent = data.wind.speed + ' mph'
 }
 
 function displayForecast (data) {
+    document.getElementById("forecast-weather").innerHTML = '';
     for (let i = 3; i < data.length; i+=8)
     {
         let card = document.createElement("div");
@@ -71,6 +73,7 @@ function addToHistory (city) {
 }
 
 function renderHistory () {
+    document.getElementById("history").innerHTML = "" ;
     for (i=citySearch.length-1; i >= 0; i--)
     {
     let historyButton = document.createElement("button");
@@ -78,3 +81,19 @@ function renderHistory () {
     document.getElementById("history").append(historyButton);
     }
 }
+
+document.getElementById("history").addEventListener("click", function(event) {
+    if (event.target.tagName === "BUTTON") {
+      var city = event.target.textContent;
+      fetchWeather(city);
+    }
+  });
+  
+
+  window.addEventListener('load', function() {
+    var savedSearches = localStorage.getItem("searchHistory");
+    if (savedSearches) {
+      citySearch = JSON.parse(savedSearches);
+      renderHistory();
+    }
+  });
