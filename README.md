@@ -11,3 +11,6 @@ to display
 This task took me a bit to figure out how I wanted to approach it but once I found what worked for me, it wasn't too bad. It was a lot of repeating lines of code, just for the different parts of the forecast that I wanted to display on the page. 
 
 The deployed webpage can be found here:
+
+A screen capture of the webpage can be found here: ![screencapture-file-C-Users-leamr-OneDrive-Desktop-workspace-effective-octo-palm-tree-index-html-2023-07-03-11_14_23](https://github.com/leamr10/effective-octo-palm-tree/assets/133124800/4dcc201e-5f27-4105-9d58-4939bfc6ebad)
+
