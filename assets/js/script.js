@@ -59,6 +59,8 @@ function displayForecast (data) {
         let icon = document.createElement("img");
         icon.src = `https://openweathermap.org/img/w/${data[i].weather[0].icon}.png`
         card.append(date,icon,temp,humid,wind);
+        card.classList.add("forecast-card");
+        card.classList.add("day-" + i);
         document.getElementById("forecast-weather").append(card);
     }
 }
