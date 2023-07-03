@@ -3,7 +3,6 @@ var apiKey = '7facfa5579c58d1fb4bd2c24b9dea9e0';
 var searchBtn = document.querySelector('#search');
 var searchInput = document.querySelector('input');
 var citySearch = [];
-var cityHistoryFormEl = document.querySelector('#city-history')
 
 searchBtn.addEventListener('click', handleSearch);
 function handleSearch ( ) {
